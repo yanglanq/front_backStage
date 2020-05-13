@@ -1,29 +1,90 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path:"/",
+    redirect:"/login"
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: "/login",
+    component:()=>import("../views/login")
+  },
+  {
+    path: "/Home",
+    component:()=>import("../views/Home"),
+    meta:{
+      needLogin:true,
+    },
+    children:[
+      {
+        path: "/",
+        redirect:"/Home/swiper"
+      },
+      {
+        path:"/Home/swiper",
+        component:()=>import("../components/swiper"),
+        meta:{
+          icon:"el-icon-picture-outline",
+          text:"轮播图管理",
+          needLogin:true,
+        }
+      },
+      {
+        path:"/Home/infoOperation",
+        component:()=>import("../components/infoOperation"),
+        meta:{
+          icon:"el-icon-ice-tea",
+          text:"多肉管理",
+          needLogin:true,
+        }
+      },
+      {
+        path:"/Home/userInfo",
+        component:()=>import("../components/userInfo"),
+        meta:{
+          icon:"el-icon-user",
+          text:"用户管理",
+          needLogin:true,
+        }
+      },
+      {
+        path:"/Home/recommendMsg",
+        component:()=>import("../components/recommendMsg"),
+        meta:{
+          icon:"el-icon-magic-stick",
+          text:"每日推荐",
+          needLogin:true,
+        }
+      },
+    ]
   }
+
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+import store from "../store/index"
+router.beforeEach((to, from, next) =>{
+  if(to.meta.needLogin){// 需要登录
+    if(store.getters.getLoginInfo=="false"){
+      // 没有登陆
+      console.log("请登录");
+      next({
+        path:"/login"
+      })
+    }else {
+      next();
+    }
+  }else {
+    next();
+  }
 })
 
 export default router
