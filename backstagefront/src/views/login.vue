@@ -49,8 +49,8 @@
                 },
                 bg_color:"rgba(236, 245, 255,0.3)",//背景颜色
                 form: {//表单数据内容
-                    username: '',//用户名
-                    password: '',//密码
+                    username: 'admin',//用户名
+                    password: '123456',//密码
                 },
                 labelPosition:"left",
                 coverShow:false,

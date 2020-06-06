@@ -25,7 +25,7 @@ const routes = [
       },
       {
         path:"/Home/swiper",
-        component:()=>import("../components/swiper"),
+        component:()=>import("../components/swiper/swiper"),
         meta:{
           icon:"el-icon-picture-outline",
           text:"轮播图管理",
@@ -34,7 +34,7 @@ const routes = [
       },
       {
         path:"/Home/infoOperation",
-        component:()=>import("../components/infoOperation"),
+        component:()=>import("../components/infoOperation/infoOperation"),
         meta:{
           icon:"el-icon-ice-tea",
           text:"多肉管理",
@@ -43,7 +43,7 @@ const routes = [
       },
       {
         path:"/Home/userInfo",
-        component:()=>import("../components/userInfo"),
+        component:()=>import("../components/userInfo/userInfo"),
         meta:{
           icon:"el-icon-user",
           text:"用户管理",
@@ -52,7 +52,7 @@ const routes = [
       },
       {
         path:"/Home/recommendMsg",
-        component:()=>import("../components/recommendMsg"),
+        component:()=>import("../components/recommendMsg/recommendMsg"),
         meta:{
           icon:"el-icon-magic-stick",
           text:"每日推荐",

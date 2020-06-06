@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar">
     <el-menu
-      :default-active="activeIndex"
+      :default-active="this.$route.path"
       class="el-menu-vertical-demo"
       :collapse="slidechange"
       background-color="#324157"
@@ -31,7 +31,6 @@ export default {
   },
   methods: {},
   created() {
-    console.log(this.$root._router.options.routes[2].children.filter(item=>item.meta)[0].path);
   },
   computed: {
     slidechange() {

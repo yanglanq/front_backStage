@@ -10,7 +10,6 @@
           }
       },
       created() {
-          console.log(document.cookie)
       },
       components:{
     }
@@ -18,4 +17,7 @@
 </script>
 
 <style lang="less">
+    textarea{
+        resize: none !important;
+    }
 </style>
